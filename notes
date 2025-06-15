@@ -1,0 +1,19 @@
+Links:
+https://www.youtube.com/watch?v=yyUHQIec83I&t=2786s&ab_channel=TechWorldwithNana
+
+commands:
+go mod init print
+
+go run main.go
+
+go run main.go helpers.go 
+
+#if we have 100s of helper files then instead of passing all 100s of files we can run below command from the directory all files are present
+
+command: go run .
+
+No WHILE/DO WHILE LOOP . Only for and for-each
+
+struct is used to store mixed data types data
+
+variables: local, package level, global
