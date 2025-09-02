@@ -17,3 +17,50 @@ No WHILE/DO WHILE LOOP . Only for and for-each
 struct is used to store mixed data types data
 
 variables: local, package level, global
+
+=====================================================
+go.sum & go.mod
+Think of go.sum as the lock file in Go (similar to package-lock.json in Node.js or poetry.lock in Python).
+
+🔑 What it is
+
+When you run go mod tidy or go get, Go downloads the modules listed in your go.mod.
+
+For every module version, Go records checksums (cryptographic hashes) in go.sum.
+
+These checksums ensure that:
+
+Everyone building your project gets the exact same dependency code.
+
+If a dependency’s code changes (e.g., tampering or supply-chain attack), Go will detect it and refuse to build.
+
+📂 Example
+
+Suppose your go.mod says:
+
+require github.com/stretchr/testify v1.11.1
+
+
+Your go.sum will have entries like:
+
+github.com/stretchr/testify v1.11.1 h1:abc123...   # hash of source code
+github.com/stretchr/testify v1.11.1/go.mod h1:def456...
+
+
+The first line verifies the actual module source code.
+
+The second line verifies the dependency’s go.mod.
+
+🔄 Lifecycle
+
+You commit both go.mod and go.sum to version control.
+
+go.sum grows as new modules are used.
+
+If you delete it and run go mod tidy, Go will regenerate it by redownloading deps.
+
+✅ TL;DR
+
+go.mod → which modules and versions you require.
+
+go.sum → security + reproducibility, locking the exact contents of those versions.
